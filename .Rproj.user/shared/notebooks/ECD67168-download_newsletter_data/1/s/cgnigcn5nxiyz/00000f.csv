@@ -1,0 +1,3 @@
+"0","options(googledrive_quiet = F)"
+"0","options(gargle_oauth_email = ""nwssmm.leaders@gmail.com"")"
+"0","gs4_auth(email = ""nwssmm.leaders@gmail.com"")"

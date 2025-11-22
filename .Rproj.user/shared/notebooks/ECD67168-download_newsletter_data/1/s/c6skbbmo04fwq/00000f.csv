@@ -1,0 +1,18 @@
+"0","newsletter <- ""spring"""
+"0","newsletter_year <- ""2025"""
+"0","sheet_id <- as_sheets_id(""https://docs.google.com/spreadsheets/d/1R58gek66Wsw5PyJL5zy5izaBlYpuZsFKmLAVXWbN5Cg/edit?usp=sharing"")"
+"0","print(sheet_id)"
+"1","
+[36m──[39m [1m<googlesheets4_spreadsheet>[22m [36m──────────────────────────────────────────────────────────────────────────────[39m
+Spreadsheet name: ""[36mNWSSMM Newsletter Submissions - February 2025 (Responses)[39m""
+              ID: 1R58gek66Wsw5PyJL5zy5izaBlYpuZsFKmLAVXWbN5Cg               
+          Locale: en_US                                                      
+       Time zone: America/Los_Angeles                                        
+     # of sheets: 1                                                          
+
+[36m──[39m [1m<sheets>[22m [36m─────────────────────────────────────────────────────────────────────────────────────────────────[39m
+    (Sheet name): (Nominal extent in rows x columns)
+[32mForm Responses 1[39m: 114 x 23"
+"1",""
+"1","
+"

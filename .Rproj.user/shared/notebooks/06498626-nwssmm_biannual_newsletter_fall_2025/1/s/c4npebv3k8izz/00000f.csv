@@ -1,0 +1,208 @@
+"0","categories <- c("
+"0","  ""From the Chapter Leaders"", ""Introducing..."","
+"0","  ""Research Update"", ""Fieldwork Update"","
+"0","  ""Publication"", ""Research Blooper"","
+"0","  ""Small Victory"", ""Photo"""
+"0",")"
+"0",""
+"0","for (category in categories) {"
+"0","  "
+"0","  if (hasName(responses, category)) {"
+"0","    "
+"0","    dfx = responses |>"
+"0","      filter(!is.na(!!sym(category)))"
+"0","    "
+"0","    if (nrow(dfx) == 0) {"
+"0","      next"
+"0","    }"
+"0","    "
+"0","    cat(glue(""# {category}""))"
+"0","    cat(""\n"")"
+"0","    "
+"0","    for (i in 1:length(dfx[[category]])) {"
+"0","      "
+"0","      if (hasName(dfx, glue(""{category} - Title""))) {"
+"0","        "
+"0","        up_title = dfx[[glue(""{category} - Title"")]][i]"
+"0","        cat(glue(""## {up_title}""))"
+"0","        cat(""\n"")"
+"0","      }"
+"0","      "
+"0","      up_author = dfx$Name[i]"
+"0","      up_email = dfx$Email[i]"
+"0","      update = dfx[[category]][i]"
+"0","      "
+"0","      if (category == ""Photo"") {"
+"0","      "
+"0","        up_photo_file = dfx[[category]][i]"
+"0","        up_photo_caption = dfx[[""Photo Caption""]][i]"
+"0","        "
+"0","        cat(""\n\n"")"
+"0","        cat(glue(""![](../{up_photo_file})""))"
+"0","        cat(""\n\n"")"
+"0","        cat(glue(""<i>{up_author} ({up_email})</i>""))"
+"0","        cat(""\n\n"")"
+"0","        cat(up_photo_caption)"
+"0","        cat(""\n\n"")"
+"0","        cat(""******"")"
+"0","          "
+"0","      } else {"
+"0","      "
+"0","        cat(""\n\n"")"
+"0","        cat(glue(""<i>{up_author} ({up_email})</i>""))"
+"0","        cat(""\n\n"")"
+"0","        cat(update)"
+"0","        cat(""\n\n"")"
+"0","      }"
+"0","      "
+"0","      if (category == ""Publication"") {"
+"0","        up_link = dfx[[""Publication Link""]][i]"
+"0","        cat(glue(""Publication available at this link: {up_link}""))"
+"0","        cat(""\n\n"")"
+"0","      }"
+"0","    }"
+"0","  }"
+"0","}"
+"1","# From the Chapter Leaders"
+"1","
+"
+"1","
+
+"
+"1","<i>Connor and Nat (nwssmm.leaders@gmail.com)</i>"
+"1","
+
+"
+"1","Hi NWSSMMers!
+
+As Fall Term wraps up, we’re excited to share our final newsletter of the year. A warm welcome to all our new members who joined us this fall - we’re so glad to have you in the chapter and look forward to meeting many of you at our Spring 2026 Annual Meeting. Keep an eye out early next term for details on dates, abstract submissions, and registration. And an extremely big thank you to all of those who are working hard to make next years Annual Meeting happen!
+
+Thank you to everyone who contributed updates and photos for this edition. Across labs, campuses, and field sites, our chapter has had a busy and impressive fall, and we’re thrilled to highlight the great work happening within our community. 
+
+Looking ahead, don’t forget that the 2026 Society for Marine Mammalogy Biennial Conference will be held in Puerto Rico next fall. It’s a great time to start thinking about abstracts, travel funding, and how you want to share your work on a bigger stage.
+
+NWSSMM merch remains available at cost through our Bonfire shop (link below). If this format doesn’t work for you, please let us know—we want our merch to be accessible to everyone.
+
+As you finish final projects, exams, and end-of-term chaos, please continue to share your defense and milestone links so the chapter can cheer you on. And once you make it through the last stretch, we hope you all get some well-deserved rest before winter term begins.
+
+Settle in with something warm and enjoy the newsletter.
+
+Your NWSSMM Leaders,
+Connor and Nat"
+"1","
+
+"
+"1","# Introducing..."
+"1","
+"
+"1","
+
+"
+"1","<i>Miriam Hauer-Jensen (hauerjem@oregonstate.edu)</i>"
+"1","
+
+"
+"1","Hi everyone! I am Miriam Hauer-Jensen and I am a new member of NWSSMM. I am a second year master's student in the Marine Resource Management program at Oregon State University. I am in Kate Stafford's Marine Mammal and Bioacoustics and Ecology lab researching the effects of retreating sea ice on marine mammal vocalizations in the Chukchi Sea. My data has focused on bearded seal and walrus detections, but I have expanded my analysis to include bowhead, humpback, fin, and beluga whales. In my free time, I like to hike, surf, play pickleball, read, spend time with my cat Molly and try new restaurants with friends."
+"1","
+
+"
+"1","
+
+"
+"1","<i>Marc Rams i Rios (marc.rams@oregonstate.edu)</i>"
+"1","
+
+"
+"1","Marc Rams i Rios is a PhD student in Wildlife Science at Oregon State University’s Marine Mammal Institute. Born and raised in Barcelona, Marc completed his bachelor’s degree in Environmental Biology at the Universitat Autònoma de Barcelona. During a year abroad in the Azores Islands, he discovered his passion for marine mammals while working as a whale watching guide and studying sperm whales. That experience inspired him to pursue a master’s degree in Arctic Marine Ecology at UiT - The Arctic University of Norway in Tromsø, the northernmost university in the world. Living in the Arctic was an unforgettable experience that deepened his appreciation for remote fieldwork and the challenges of studying wildlife in extreme environments. For his master’s thesis, Marc traveled even farther north to Svalbard, where he studied ringed seal populations using drone imagery. He later continued that work with the Norwegian Polar Institute, helping develop machine learning models to automatically detect and count seals from aerial photos.
+
+Marc is now in his first year of his PhD at MMI, where he is mainly taking courses and working as a teaching assistant. His upcoming research will focus on gray whale foraging techniques, using a combination of methods such as drones and CATS tags to better understand how these animals feed and respond to environmental challenges. Outside of research, Marc is a big sports fan, especially soccer (he will always call it football) and basketball, and a proud FC Barcelona supporter. He also enjoys hiking, camping, snowboarding, diving, and just about any outdoor adventure, but if you hand him a craft project, he will politely run the other way."
+"1","
+
+"
+"1","# Research Update"
+"1","
+"
+"1","## Echograms EVERYWHERE"
+"1","
+"
+"1","
+
+"
+"1","<i>Natalie Chazal (chazaln@oregonstate.edu)</i>"
+"1","
+
+"
+"1","I’m developing an automated method to detect zooplankton swarms in echograms from recreational, Garmin, echosounders using a U-Net segmentation model. Most of my recent work has focused on building a reliable training dataset: generating echograms, slicing them into patches, and ensuring each patch aligns correctly with its mask. With preprocessing steps now stable, I’ve begun training and testing the model while experimenting with different loss functions to better capture subtle swarm features. Early results show the model can identify the general structure of swarms, and next steps include expanding the dataset and refining predictions into summarize zooplankton swarm metrics across gray whale sightings for future modeling efforts."
+"1","
+
+"
+"1","## I'm defending my PhD!!!"
+"1","
+"
+"1","
+
+"
+"1","<i>Lisa Hildebrand (hildebrl@oregonstate.edu)</i>"
+"1","
+
+"
+"1","I'm defending my PhD on Tuesday, December 2nd!!! If anyone wants to attend the public seminar, it's happening at 9 am. Below are the details!
+
+Speaker: Lisa Hildebrand, PhD Candidate in Fish, Wildlife & Conservation Sciences
+Topic: Investigating individuals: environmental drivers and health consequences of gray whale foraging ecology
+
+Date: Tuesday, Dec 2, 2025
+Time: 9am
+
+Location: Carmen Ford Phillips Auditorium, Gladys Valley Marine Studies Building, Hatfield Marine Science Center
+
+Zoom: oregonstate.zoom.us/j/93888355437
+Password: FWCSDefend"
+"1","
+
+"
+"1","## Parasites continue to be counted!"
+"1","
+"
+"1","
+
+"
+"1","<i>Connor Whalen (cjwhalen@uw.edu)</i>"
+"1","
+
+"
+"1","Over the past year our team of undergrads, volunteers, and techs have dissected over 50 marmam GI tracts and counted tens of thousands of parasites from them! We are developing a novel method of counting parasites from liquid samples (like gut juices, eww) that involves counting thousands of tiny parasites accurately dozens of times. This once again proves that people will go to incredible lengths to work with marine mammals in any capacity!"
+"1","
+
+"
+"1","# Fieldwork Update"
+"1","
+"
+"1","## Three weeks on the R/V Sikuliaq"
+"1","
+"
+"1","
+
+"
+"1","<i>Taylor Azizeh (taylor.azizeh@oregonstate.edu)</i>"
+"1","
+
+"
+"1","I spent three weeks in August aboard the R/V Sikuliaq in the Bering and Chuckhi Seas conducting a Marine Mammal Watch. We saw gray whales, fin whales, orca, and lots and lots of walruses! The ship had 24 hour operations onboard where scientists from NOAA, University of Alaska Fairbanks, University of Washington, and more collected benthic, pelagic, and oceanographic samples, in tandem with marine mammal and seabird observing. These data are being collected as a part of the long-term Distributed Biological Observatory program which aims to monitor spatiotemporal changes in the Arctic over the past few decades. The Watch report and data are recently published (https://arcticdata.io/catalog/view/doi%3A10.18739%2FA29S1KN2S)."
+"1","
+
+"
+"1","## 2026 Blue Whale Field Season in New Zealand"
+"1","
+"
+"1","
+
+"
+"1","<i>Nicole Principe (nicole.principe@oregonstate.edu)</i>"
+"1","
+
+"
+"1","I am thrilled to be joining the 2026 field season of the SAPPHIRE (Synthesis of Acoustics, Physiology, Prey, and Habitat in a Rapidly changing Environment) Project with the GEMM Lab at OSU. We will be heading to Aotearoa New Zealand at the end of January for 3 weeks of dedicated blue whale surveys. The goal of the project is to understand how changing environmental conditions are impacting krill availability and blue whale health in the South Taranaki Bight. We will be collecting data on oceanographic conditions, employing drones for blue whale photogrammetry, using active acoustics to survey for krill, and collecting photos of blue whales for photo-ID."
+"1","
+
+"

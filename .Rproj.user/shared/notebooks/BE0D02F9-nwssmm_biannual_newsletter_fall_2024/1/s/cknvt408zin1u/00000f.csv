@@ -1,0 +1,333 @@
+"0","categories <- c("
+"0","  ""From the Chapter Leaders"", ""Introducing..."","
+"0","  ""Research Update"", ""Fieldwork Update"","
+"0","  ""Publication"", ""Research Blooper"","
+"0","  ""Small Victory"", ""Photo"""
+"0",")"
+"0",""
+"0","for (category in categories) {"
+"0","  "
+"0","  if (hasName(responses, category)) {"
+"0","    "
+"0","    dfx = responses |>"
+"0","      filter(!is.na(!!sym(category)))"
+"0","    "
+"0","    if (nrow(dfx) == 0) {"
+"0","      next"
+"0","    }"
+"0","    "
+"0","    cat(glue(""# {category}""))"
+"0","    cat(""\n"")"
+"0","    "
+"0","    for (i in 1:length(dfx[[category]])) {"
+"0","      "
+"0","      if (hasName(dfx, glue(""{category} - Title""))) {"
+"0","        "
+"0","        up_title = dfx[[glue(""{category} - Title"")]][i]"
+"0","        cat(glue(""## {up_title}""))"
+"0","        cat(""\n"")"
+"0","      }"
+"0","      "
+"0","      up_author = dfx$Name[i]"
+"0","      up_email = dfx$Email[i]"
+"0","      update = dfx[[category]][i]"
+"0","      "
+"0","      if (category == ""Photo"") {"
+"0","      "
+"0","        up_photo_file = dfx[[category]][i]"
+"0","        up_photo_caption = dfx[[""Photo Caption""]][i]"
+"0","        "
+"0","        cat(""\n\n"")"
+"0","        cat(glue(""![](../{up_photo_file})""))"
+"0","        cat(""\n\n"")"
+"0","        cat(glue(""<i>{up_author} ({up_email})</i>""))"
+"0","        cat(""\n\n"")"
+"0","        cat(up_photo_caption)"
+"0","        cat(""\n\n"")"
+"0","        cat(""******"")"
+"0","          "
+"0","      } else {"
+"0","      "
+"0","        cat(""\n\n"")"
+"0","        cat(glue(""<i>{up_author} ({up_email})</i>""))"
+"0","        cat(""\n\n"")"
+"0","        cat(update)"
+"0","        cat(""\n\n"")"
+"0","      }"
+"0","      "
+"0","      if (category == ""Publication"") {"
+"0","        up_link = dfx[[""Publication Link""]][i]"
+"0","        cat(glue(""Publication available at this link: {up_link}""))"
+"0","        cat(""\n\n"")"
+"0","      }"
+"0","    }"
+"0","  }"
+"0","}"
+"1","# From the Chapter Leaders"
+"1","
+"
+"1","
+
+"
+"1","<i>Liz, Connor, and Nat (nwssmm.leaders@gmail.com)</i>"
+"1","
+
+"
+"1","Hi NWSSMMers!
+
+Welcome to all our new members, we’re so excited to meet you at our annual meeting this spring and have you as a part of this group!
+
+Thank you for your awesome contributions to the Fall 2024 newsletter! It’s so cool to see what everyone is working on and stay in touch between meetings. We hope everyone’s field seasons were productive and free from complications!
+
+We have a few new faces to introduce to the group this fall. Nat Chazal (OSU) and Connor Whalen (UW) joined Liz as your chapter leaders and they’ve hit the ground running. If Connor’s Jeopardy creation skills at our last annual meeting are anything to go by, we’re in for a fun few years. 
+
+We are also welcoming Dr. Amy Van Cise (Professor, UW) as our second faculty sponsor. Her lab focuses on whale and dolphin conservation research, especially using ‘omics tools, such as genomics, microbiomics, and eDNA. Check out her website and contact info under the Research Updates section!
+
+Big congratulations to everyone who is headed to Perth to present at the upcoming conference! At the link below, you can add flight dates, contact information, poster/talk information, and other travel plans so that we can stay connected. Feel free to add as much or as little information as you would like:
+
+<https://docs.google.com/spreadsheets/d/1R45n8_9oPN2Z7Rw7cy7iV239kMt11IE73hgB0sk2t_Q/edit?usp=sharing>
+
+We will also have more information about meeting up in Perth with our new faculty sponsor, Dr. Amy van Cise in a separate email so keep an eye out for those of you going to SMM! 
+
+SMM is currently looking for new Student Members at Large (SMaL) to join their team. If you are excited about collaborating with a large, international scientific organization and want to advocate for student resources and involvement, send an email to smal@marinemammalscience.org or check out the student affairs counter at the conference.
+
+Also a quick reminder that merch is available at cost on our Bonfire shop, which can be accessed here: <https://www.bonfire.com/store/nwssmm-merch/>. If you want merch, but this format isn’t working for you, please reach out to us! We want to make sure this is accessible to everyone and would be happy to make some changes if needed.
+
+We hope everyone is ready to sink into a long winter season of writing and coursework, and we’re sending an extra “Good Luck!” to everyone who is on the final push to defending. Don’t forget to share your defense link with the group so we can tune in and support!
+
+With that, we encourage you to brew a fresh cup of coffee, put on your office slippers, and read on!
+
+Liz, Nat, and Connor - Your NWSSMM leaders"
+"1","
+
+"
+"1","# Research Update"
+"1","
+"
+"1","## New Faculty Co-Sponsor Amy Van Cise"
+"1","
+"
+"1","
+
+"
+"1","<i>Amy Van Cise (avancise@uw.edu)</i>"
+"1","
+
+"
+"1","Hi, I'm Amy,
+I am an Assistant Professor in the School of Aquatic and Fisheries Sciences at the University of Washington. I study various aspects of how marine top predators use social behavior as an ecological and evolutionary strategy, and the ways in which social behavior drives evolution and population structure in marine mammals. 
+
+If you want to learn more about Amy and her research, please visit her website at https://www.amyvancise.com/, or reach out via email @ avancise@uw.edu."
+"1","
+
+"
+"1","## Sexually Identify Pinnipeds with Scat!"
+"1","
+"
+"1","
+
+"
+"1","<i>Madison Gard (mlgard00@gmail.com)</i>"
+"1","
+
+"
+"1","My name is Maddie Gard and I spent years of my undergraduate experience in Western Washington University’s Marine Mammal Ecology Lab before graduating in June 2023. A lot of the research projects I contributed to or led were focused on harbor seal foraging behaviors in Whatcom Creek or diets of Steller sea lions using molecular scatology. Since graduating, I published a set of qPCR primers that can be used for sexually identifying Steller and California sea lions from scat. These can be applied to a variety of scat-based pinniped studies related to marine disease, chronic stress, contaminant and biotoxin exposures, etc. to determine whether there are sex-specific responses or vulnerabilities to changing environmental conditions. So many of us are studying pinnipeds or other marine mammals, and I’d be happy to chat about the primers and how we designed them if you think they could be useful for your research! 
+
+Gard, M., Lewis, Z.K., Akmajian, A.M. et al. Comparison of paired sex ratio estimates obtained from novel molecular assays and visual surveys in the sexually dimorphic Steller sea lion (Eumetopias jubatus). Conservation Genet Resour 16, 227–235 (2024). https://doi.org/10.1007/s12686-024-01358-2"
+"1","
+
+"
+"1","## Jenny Stern's PhD Defense & new job!"
+"1","
+"
+"1","
+
+"
+"1","<i>Jenny Stern (jenny.stern1@gmail.com)</i>"
+"1","
+
+"
+"1","On September 30th, I defended my PhD dissertation, Examining hair growth rates and dietary patterns of wild and captive bears, and passed! My dissertation focused on addressing the assumptions that underlie the interpretation of dietary data derived from hair samples and investigating the drivers of diet variability in polar bears. I also started a new job as a Fish Biologist at NOAA, studying harbor seal predation on salmon."
+"1","
+
+"
+"1","## PhD Defense!"
+"1","
+"
+"1","
+
+"
+"1","<i>Clara Bird (clara.bird@oregonstate.edu)</i>"
+"1","
+
+"
+"1","I defended my Ph.D (title: Drone Data Reveals How Behavior, Buoyancy, and Size Influence PCFG Gray Whale Energetics) in August! It definitely feels odd to not be a grad student anymore but I'm excited to be sticking around at OSU as a post-doc!"
+"1","
+
+"
+"1","# Fieldwork Update"
+"1","
+"
+"1","## First Full Field Season!"
+"1","
+"
+"1","
+
+"
+"1","<i>Natalie Chazal (chazaln@oregonstate.edu)</i>"
+"1","
+
+"
+"1","This summer was my first full field season as a PhD student in the Geospatial Ecology of Marine Megafauna (GEMM) Lab! I was trained up as a drone pilot and completed ~20 flights over gray whales off the coast near Newport, Oregon. We also use tons of other methods like dropping a Go-Pro to observe habitat and mysid presence, fecal samples, biopsies, photo ID, zooplankton net-tows, and creating water column profiles with an RBR. This summer was so much fun and I can't wait to do it all over again next year!"
+"1","
+
+"
+"1","# Publication"
+"1","
+"
+"1","## Anthropogenic and killer whale (Orcinus orca) scarring on Pacific Coast Feeding Group gray whales (Eschrichtius robustus) in northwest Washington"
+"1","
+"
+"1","
+
+"
+"1","<i>Liz Allyn (liz.allyn@makah.com)</i>"
+"1","
+
+"
+"1","Gray whales (Eschrichtius robustus) face many threats to their survival which are multi‐faceted and difficult to assess. In this study, we evaluate photographs of Pacific Coast Feeding Group (PCFG) gray whales taken between 2014 and 2020 off the northwest coast of Washington to document the occurrence of scarring from fishing gear entanglements, vessel strikes and killer whale (Orcinus orca) attacks and compare our findings with scarring prevalence in gray whales off Sakhalin Island, Russia. We found that, of the 139 PCFG whales evaluated, 11.5% had scarring from entanglements, 3.6% had scarring from vessel strikes and 25.9% had scarring from killer whale attacks. We found no differences in scarring rates between males and females. Observed rates of scarring from entanglements for PCFG whales were less than rates observed for gray whales off Sakhalin Island, Russia, while scarring rates from vessel strikes were slightly greater for PCFG whales, but the differences were not statistically significant. The frequency of scars due to killer whale attacks on PCFG whales was significantly lower than reports for whales observed at Sakhalin Island. Estimates of anthropogenic and killer whale scarring in this study are likely biased low due to limited photographic coverage of the caudal peduncle and flukes, where scarring from entanglements and killer whale attacks are most commonly observed. The methods used here were similar to studies at Sakhalin Island, suggesting the evaluations had similar biases. If we assume that observations of non‐lethal scar sources on gray whales are proportional to mortality rates from those sources, findings from this study can help evaluate if current models present plausible injury and mortality estimates for PCFG and Sakhalin Island whales given the finding of no statistical difference in non‐lethal scarring rates between the two groups."
+"1","
+
+"
+"1","Publication available at this link: https://journal.iwc.int/index.php/jcrm/article/view/1044"
+"1","
+
+"
+"1","## Exploring indirect effects of a classic trophic cascade between urchins and kelp on zooplankton and whales"
+"1","
+"
+"1","
+
+"
+"1","<i>Lisa Hildebrand (Lisa.Hildebrand@oregonstate.edu)</i>"
+"1","
+
+"
+"1","Kelp forest trophic cascades have been extensively researched, yet indirect effects to the zooplankton prey base and gray whales have not been explored. We investigate the correlative patterns of a trophic cascade between bull kelp and purple sea urchins on gray whales and zooplankton in Oregon, USA. Using generalized additive models (GAMs), we assess (1) temporal dynamics of the four species across 8 years, and (2) possible trophic paths from urchins to kelp, kelp as habitat to zooplankton, and kelp and zooplankton to gray whales. Temporal GAMs revealed an increase in urchin coverage, with simultaneous decline in kelp condition, zooplankton abundance and gray whale foraging time. Trophic path GAMs, which tested for correlations between species, demonstrated that urchins and kelp were negatively correlated, while kelp and zooplankton were positively correlated. Gray whales showed nuanced and site-specific correlations with zooplankton in one site, and positive correlations with kelp condition in both sites. The negative correlation between the kelp-urchin trophic cascade and zooplankton resulted in a reduced prey base for gray whales. This research provides a new perspective on the vital role kelp forests may play across multiple trophic levels and interspecies linkages."
+"1","
+
+"
+"1","Publication available at this link: https://doi.org/10.1038/s41598-024-59964-x"
+"1","
+
+"
+"1","# Research Blooper"
+"1","
+"
+"1","## Time is a construct!!!!"
+"1","
+"
+"1","
+
+"
+"1","<i>Lisa Hildebrand (Lisa.Hildebrand@oregonstate.edu)</i>"
+"1","
+
+"
+"1","I have learned to advocate for the skills that I want to learn during my PhD, rather than doing only what my advisor wants me to do. After all, that’s what graduate school is for – learning new tools that you want to add to your scientist toolbox. One of these tools is learning how to use suction-cup tags and analyze the data streams we get from them. Lo and behold, my advocating paid off – we now use suction-cup tags to better understand gray whale foraging, behavior, and risk exposure, and I have been the one to learn the ropes about how to program and prep the tags, as well as process the data. Are you starting to think, why is this in the blooper section? This very much sounds like it belongs in the small victory section! Well…for our most recent tag deployments, I was running the tag show solo. I did all the prep on my own and felt really proud of myself for doing it. Unfortunately, when we retrieved a tag that had been on a whale for just over 11 hours and I downloaded the data, I discovered an error I had made while programming the tags. These tags live in UTC time so they are 7 hours ahead of the time we live in, Pacific Standard Time (PST) during daylight savings in the summer. When you program the tags, you have to input the offset of your time (PST) to the tag time (UTC). Well rather than putting a -7, I input a +7, programming the tag to be Indochina Time (ICT). Because we program our tag’s camera to only turn on during daylight hours (6 am to 9 pm), it meant that we didn’t record video for the majority of our 11+ hour deployment because the tag was happily sleeping thinking it was ICT nighttime…Better luck next time I guess."
+"1","
+
+"
+"1","# Small Victory"
+"1","
+"
+"1","
+
+"
+"1","<i>Madison Gard (mlgard00@gmail.com)</i>"
+"1","
+
+"
+"1","This fall, I am starting as a master’s of marine affairs candidate in the University of Washington’s School of Marine and Environmental Affairs. I’m also working as the Washington Sea Grant’s Science Communications Fellow and writing for SMEA’s blog Currents, which both showcase awesome research happening in our region. I would love to hear from anyone in NWSSMM to learn more about your research and turn that into an article for either one of these journals. Here’s a few examples of the recent publications they’ve produced:
+<br>
+WSG Sea Star Summer 2024.pdf 
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://wsg.washington.edu/wordpress/wp-content/uploads/SeaStarSummer24Summer.pdf 
+<br>
+Currents: A student blog <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://smea.uw.edu/students/student-blog/ 
+<br>
+Now, or in the future, I’m always open to hearing from you! I’d love to hear about your work, offer resources/advice, and showcase the cool science our NWSSMM Community is working on right now!"
+"1","
+
+"
+"1","
+
+"
+"1","<i>Connor Whalen (cjwhalen@uw.edu)</i>"
+"1","
+
+"
+"1","I lived in NYC for 2 years and was a card carrying Museum of Natural History member for both. I went to that museum about 15 times between 2022 and 2024, and each time I went, the Ocean Life room was always closed, without explanation. I recently went back to NYC to present my harbor seal metabolic work at the SCCS-NY conference, which was held in the museum and to my eternal delight, I was able to present my poster directly underneath the GIANT BLUE WHALE in you guessed it, the Ocean Life room. Finally!
+
+<img src=""https://drive.google.com/uc?export=view&id=1RscUET_zMdxvMD3dP8-f82w1IfrTuGs6"">"
+"1","
+
+"
+"1","
+
+"
+"1","<i>Nicole Principe (nicole.principe@oregonstate.edu)</i>"
+"1","
+
+"
+"1","I am a first year PhD student at Oregon State (working in the GEMM Lab under Dr. Leigh Torres) and we just finished up a 9 credit hour megacourse on the biology, ecology, and conservation of marine mammals. It was an intense 5 week course covering almost every topic you can think of when it comes to marine mammals. It felt like a sprint more than a marathon, but I ended the class with a 100% woohoo!"
+"1","
+
+"
+"1","
+
+"
+"1","<i>Celest Sorrentino (sorrentc@oregonstate.edu)</i>"
+"1","
+
+"
+"1","I am a recently admitted masters student with the GEMM Lab this fall! I am so excited to leading the TOPAZ/JASPER project. The TOPAZ/JASPER project focuses on inspiring youth interested in marine science by providing an opportunity for 2 high schoolers and two college undergraduates to participate in field work. Not just any field work, as this includes collecting zooplankton samples on a kayak, observing for gray whales, as well as learning how to thrive as a team living in a field station. I am thrilled to be able to have a chance to uplift these students in their journey to gaining confidence in marine science."
+"1","
+
+"
+"1","# Photo"
+"1","
+"
+"1","
+
+"
+"1","![](../img/nwssmm_biannual_newsletter_fall_2024/Graphical abstract - Sarah Teman - Natalie Chazal.png)"
+"1","
+
+"
+"1","<i>Sarah Teman (steman@uw.edu)</i>"
+"1","
+
+"
+"1","This is a graphical abstract for one of my polar bear studies! We found that we could use A1c (average blood sugar) as a tool to detect denning and reproductive success."
+"1","
+
+"
+"1","******"
+"1","
+
+"
+"1","![](../img/nwssmm_biannual_newsletter_fall_2024/IMG_6317 - Lisa Hildebrand.JPG)"
+"1","
+
+"
+"1","<i>Lisa Hildebrand (Lisa.Hildebrand@oregonstate.edu)</i>"
+"1","
+
+"
+"1","This is one of my favorite photos from this year's field work of my fellow GEMM Lab member (and one of NWSSMM's leaders) Nat Chazal because Nat just looks so happy in her field work element!"
+"1","
+
+"
+"1","******"

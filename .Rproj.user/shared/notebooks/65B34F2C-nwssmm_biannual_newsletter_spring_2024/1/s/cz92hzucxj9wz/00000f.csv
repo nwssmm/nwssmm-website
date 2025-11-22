@@ -1,0 +1,205 @@
+"0","categories <- c("
+"0","  ""From the Chapter Leaders"", ""Introducing..."","
+"0","  ""Research Update"", ""Fieldwork Update"","
+"0","  ""Publication"", ""Research Blooper"","
+"0","  ""Small Victory"", ""Photo"""
+"0",")"
+"0",""
+"0","for (category in categories) {"
+"0","  "
+"0","  if (hasName(responses, category)) {"
+"0","    "
+"0","    dfx = responses |>"
+"0","      filter(!is.na(!!sym(category)))"
+"0","    "
+"0","    if (nrow(dfx) == 0) {"
+"0","      next"
+"0","    }"
+"0","    "
+"0","    cat(glue(""# {category}""))"
+"0","    cat(""\n"")"
+"0","    "
+"0","    for (i in 1:length(dfx[[category]])) {"
+"0","      "
+"0","      if (hasName(dfx, glue(""{category} - Title""))) {"
+"0","        "
+"0","        up_title = dfx[[glue(""{category} - Title"")]][i]"
+"0","        cat(glue(""## {up_title}""))"
+"0","        cat(""\n"")"
+"0","      }"
+"0","      "
+"0","      up_author = dfx$Name[i]"
+"0","      up_email = dfx$Email[i]"
+"0","      update = dfx[[category]][i]"
+"0","      "
+"0","      if (category == ""Photo"") {"
+"0","      "
+"0","        up_photo_file = dfx[[category]][i]"
+"0","        up_photo_caption = dfx[[""Photo Caption""]][i]"
+"0","        "
+"0","        cat(""\n\n"")"
+"0","        cat(glue(""![](../{up_photo_file})""))"
+"0","        cat(""\n\n"")"
+"0","        cat(glue(""<i>{up_author} ({up_email})</i>""))"
+"0","        cat(""\n\n"")"
+"0","        cat(up_photo_caption)"
+"0","        cat(""\n\n"")"
+"0","        cat(""******"")"
+"0","          "
+"0","      } else {"
+"0","      "
+"0","        cat(""\n\n"")"
+"0","        cat(glue(""<i>{up_author} ({up_email})</i>""))"
+"0","        cat(""\n\n"")"
+"0","        cat(update)"
+"0","        cat(""\n\n"")"
+"0","      }"
+"0","      "
+"0","      if (category == ""Publication"") {"
+"0","        up_link = dfx[[""Publication Link""]][i]"
+"0","        cat(glue(""Publication available at this link: {up_link}""))"
+"0","        cat(""\n\n"")"
+"0","      }"
+"0","    }"
+"0","  }"
+"0","}"
+"1","# From the Chapter Leaders"
+"1","
+"
+"1","## Message from the Chapter Leaders"
+"1","
+"
+"1","
+
+"
+"1","<i>Rhea and Liz (nwssmm.leaders@gmail.com)</i>"
+"1","
+
+"
+"1","Hi NWSSMMers!
+
+Thank you all for your awesome contributions to the newsletter! It’s so cool to see what everyone is working on and stay in touch between meetings.
+
+We’re excited to announce that this year’s Annual Meeting will occur on May 4th in Seattle, WA! Stay tuned for more details and a call for abstracts in March. 
+
+Also a quick reminder that merch is available at our Bonfire shop, which can be accessed here: <https://www.bonfire.com/store/nwssmm-merch/>. If you want merch, but this format isn’t working for you, please reach out to us! We want to make sure this is accessible to everyone and would be happy to make some changes if needed.
+
+We also want to let everyone know that we will soon be looking for more students to step up as Chapter Leaders in the coming year. Rhea is finishing up this summer, and Liz is hoping to be done next winter, so start thinking about whether this is something you would be interested in getting involved with! Feel free to reach out to us if you have questions about the time commitment or responsibilities.
+
+Good luck to everyone ramping up their field activities this spring! We’re so excited to see you all in Seattle on May 4th!
+
+Liz & Rhea"
+"1","
+
+"
+"1","# Research Update"
+"1","
+"
+"1","## First test to measure A1c in polar bears"
+"1","
+"
+"1","
+
+"
+"1","<i>Sarah Teman (steman@uw.edu)</i>"
+"1","
+
+"
+"1","Polar bears are metabolic marvels: they thrive on high-fat foods that would put the Atkins diet to shame. In fact, high body mass is critical for bears' survival and reproduction. Adult females must gain enough mass prior to entering a maternity den, during which time a female will forgo food for 4-5 months to birth and nurse her cubs. 
+
+In partnership with the Cincinnati Zoo and USGS Alaska Science Center, I'm exploring a new method to measure fasting in wild and zoo-housed polar bears. To do this, we're using a biomarker that is, traditionally, used to diagnose pre-diabetes or diabetes in people: A1c. Also known as glycated hemoglobin, A1c is a long-term measure of blood sugar. We validated the first immunoassay to measure A1c in polar bears. To determine if A1c has use as a fasting biomarker for polar bears, we will compare A1c between fasted female bears (i.e., females that denned and produced cubs-of-the-year), and non-fasted females. We predict that females who recently fasted will have higher A1c. While this may sound counterintuitive, fasting polar bears actually become insulin resistant, much like people with type II diabetes.
+
+Unlike black or brown bears, where both sexes and all age classes will den during the winter,  only female polar bears preparing to give birth will den for the long-term. If A1c has use as a fasting biomarker, it may also be used to discern litter loss, given the tight association between fasting and denning for reproductive females. This could provide us with a new understanding of reproductive success for polar bears."
+"1","
+
+"
+"1","# Publication"
+"1","
+"
+"1","## Communication in Cook Inlet beluga whales: Describing the vocal repertoire and masking of calls by commercial ship noise"
+"1","
+"
+"1","
+
+"
+"1","<i>Arial Brewer (arialb@uw.edu)</i>"
+"1","
+
+"
+"1","Many species rely on acoustic communication to coordinate activities and communicate to conspecifics. Cataloging vocal behavior is a first step towards understanding how individuals communicate information and how communication may be degraded by anthropogenic noise. The Cook Inlet beluga population is endangered with an estimated 331 individuals. Anthropogenic noise is considered a threat for this population and can negatively impact communication. To characterize this population’s vocal behavior, vocalizations were measured and classified into three categories: whistles (n¼1264, 77%), pulsed calls (n¼354, 22%), and combined calls (n¼15, 1%), resulting in 41 call types. Two quantitative analyses were conducted to compare with the manual classification. A
+classification and regression tree and Random Forest had a 95% and 85% agreement with the manual classification, respectively. The most common call types per category were then used to investigate masking by commercial ship noise. Results indicate that these call types were partially masked by distant ship noise and completely masked by close ship noise in the frequency range of 0–12 kHz. Understanding vocal behavior and the effects of masking in Cook Inlet belugas provides important information supporting the management of this endangered population."
+"1","
+
+"
+"1","Publication available at this link: https://pubs.aip.org/asa/jasa/article/154/5/3487/2925354/Communication-in-Cook-Inlet-beluga-whales"
+"1","
+
+"
+"1","## Distribution and demographics of mysids (Crustacea: Mysida) as prey for gray whales (Eschrichtius robustus) in northwest Washington state"
+"1","
+"
+"1","
+
+"
+"1","<i>Liz Allyn (lizallyn@uw.edu)</i>"
+"1","
+
+"
+"1","The movement and distribution of gray whales (Eschrichtius robustus) during the feeding season is likely dependent on the quality of foraging opportunities and the distribution of prey species. These dynamics are especially important to understand for the Pacific Coast Feeding Group (PCFG) of gray whales which spend the feeding season along the coast from northern California, USA through northern British Columbia, Canada. In Washington state, no previous work has been done to describe available gray whale prey. The main goal of this research was to initiate studies on an important gray whale prey item in northwest Washington, mysid shrimp (Mysida), by establishing a baseline understanding of mysid swarm demographics in the area and investigating patterns in gray whale and mysid presence. Prey samples were collected during June through November 2019 and June through September 2020 using a vertically-towed plankton net at seven sites in the Strait of Juan de Fuca and seven sites in the Pacific Ocean in areas where gray whales were known to feed. Mysids collected in the samples were counted and the sex, length, species, maturity, and gravidity were documented. Patterns in gray whale and mysid co-occurrence were explored through data visualization. Seven species of mysids were observed in the survey area. In 2019, the number of mysids per tow increased steadily through the season, the most abundant species of mysids were Holmesimysis sculpta and Neomysis rayii, and sampled mysids averaged 4.7 mm in length. In 2020, mysids were abundant in tow samples in June and July but were not abundant in the remaining months of the sampling season. The average length of mysids in 2020 was 13.3 mm, and a large portion were sexually mature males and brooded females identified as H. sculpta. Throughout the survey area, the majority of whale sightings occurred later in the season in 2019 and earlier in the season in 2020, coinciding with the trends of sampled mysids. This study provides the first description of mysid swarm composition and temporal variation in northwest Washington. Tows were dominated by a similar assemblage of mysid species as what is observed in other areas of the PCFG range. The differences in sampled mysid assemblages between years, and the presence of whales in the survey area in times and at sites where samples with high mysid counts were collected, suggest evidence for interesting predator-prey dynamics that warrant further investigation."
+"1","
+
+"
+"1","Publication available at this link: https://peerj.com/articles/16587/"
+"1","
+
+"
+"1","## FIRST DIET DESCRIPTION OF THE HARBOR SEAL (PHOCA VITULINA) IN THE NORTHWEST CORNER OF THE OLYMPIC PENINSULA, WASHINGTON STATE"
+"1","
+"
+"1","
+
+"
+"1","<i>Liz Allyn (lizallyn@uw.edu)</i>"
+"1","
+
+"
+"1","Harbor Seals (Phoca vitulina) are widespread and abundant predators in Washington State and their diet is of interest given their potential impact on fish species of concern. Although the diet of this species has been well described, no data exist for most of the Pacific coast along the Olympic Peninsula and the Strait of Juan de Fuca. Here, we provide diet data (via DNA metabarcoding and hard parts) of male and female Harbor Seals from the northwestern coast of the Olympic Peninsula and the western Strait of Juan de Fuca, based on 59 scats collected during December 2020–March 2021. Despite the difficulty in collecting usable scat for hard-parts analysis during the winter months, we were able to determine diet in all collected scats via DNA metabarcoding, highlighting the value of this technique. Based on DNA metabarcoding, the species most frequently consumed by Harbor Seals were Lingcod (Ophiodon elongatus), Pacific Herring (Clupea pallasii), Kelp Greenling (Hexagrammos decagrammus), and Giant Pacific Octopus (Enteroctopus dofleini). Although based on a small sample size, this prey composition differs from that of other sites in the state, supporting the view of Harbor Seals as opportunistic central-place foragers that consume locally and seasonally available prey. Male and female Harbor Seals also appeared to differ in their diet, although the small sample size of this study limits our ability to make a direct comparison. Our results highlight the need for additional studies in the Olympic Peninsula to fully describe the diet of these predators as well as variations among seasons and between sexes."
+"1","
+
+"
+"1","Publication available at this link: https://bioone.org/journals/northwestern-naturalist/volume-104/issue-3/NWN22-17/FIRST-DIET-DESCRIPTION-OF-THE-HARBOR-SEAL-PHOCA-VITULINA-IN/10.1898/NWN22-17.short"
+"1","
+
+"
+"1","## Evaluating factors influencing compliance with vessel regulations to minimize disturbances to endangered killer whales (Orcinus orca)"
+"1","
+"
+"1","
+
+"
+"1","<i>Nikol Damato (ndamato@uw.edu)</i>"
+"1","
+
+"
+"1","Recovery of the endangered Southern Resident killer whales of the Salish Sea is impeded by threats such as vessel disturbances and noise. Reduction of vessel disturbances is key for recovering the population, but recreational vessel operators have high rates of noncompliance with regulations intended to reduce noise. Through a survey of 115 recreational boaters in Washington state, this study was an exploratory analysis of the normative and instrumental factors that may influence compliance. Recreational boaters self-reported having high levels of compliance with vessel regulations. They shared characteristics including a strong sense of responsibility to follow the rules, support for vessel regulations, concern about orca conservation, and a belief that other boaters do not comply with vessel regulations. These characteristics may predispose them to be more motivated by normative factors, such as a sense of personal responsibility, social norms, and participation in rulemaking, rather than instrumental factors based in enforcement and deterrence. This reflects how normative motivations may be more important for groups with certain characteristics, illuminating differences in motivations within a population of resource users. Due to this, management interventions may address both normative and instrumental motivations for compliance. Interventions that appeal to normative motivations based on social norms and personal responsibility, or education and outreach that fill knowledge gaps about regulations, may most influence the behavior of the boaters surveyed in this study. Nevertheless, enforcement and deterrence may still be useful for shaping compliance by boaters who are less represented in this study, such as tourists or fishers."
+"1","
+
+"
+"1","Publication available at this link: https://doi.org/10.1016/j.marpol.2024.106036"
+"1","
+
+"
+"1","# Small Victory"
+"1","
+"
+"1","
+
+"
+"1","<i>Lisa Hildebrand (Lisa.Hildebrand@oregonstate.edu)</i>"
+"1","
+
+"
+"1","I resubmitted my 1st PhD chapter manuscript for review in late January. This manuscript has been an absolute roller coaster ride. It's been rejected by two journals and it's now onto its third. It has been revised a total of six times and I've had to completely overhaul the data processing methods and statistical analyses three times. Submitting papers to peer review is super stressful, especially for grad students who are just at the beginning, starting out. So, as someone who has really been through the wringer with this paper (and I might not yet be done), take from this that your science is meaningful and important! Reviewers often don't have the time to read things multiple times or they might have to rush their feedback. Therefore, things are often missed or misunderstood. Your science has worth and if you believe in it, then it's worth the time to push through!"
+"1","
+
+"

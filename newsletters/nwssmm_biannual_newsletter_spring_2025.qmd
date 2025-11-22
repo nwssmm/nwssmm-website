@@ -1,0 +1,79 @@
+---
+title: "Spring 2025"
+date: "2025-03-15"
+---
+
+```{r, include = FALSE}
+library(tidyverse)
+library(glue)
+
+responses <- read_csv("nwssmm_biannual_newsletter_spring_2025.csv")
+```
+
+```{r, echo=FALSE, results='asis'}
+categories <- c(
+  "From the Chapter Leaders", "Introducing...",
+  "Research Update", "Fieldwork Update",
+  "Publication", "Research Blooper",
+  "Small Victory", "Photo"
+)
+
+for (category in categories) {
+  
+  if (hasName(responses, category)) {
+    
+    dfx = responses |>
+      filter(!is.na(!!sym(category)))
+    
+    if (nrow(dfx) == 0) {
+      next
+    }
+    
+    cat(glue("# {category}"))
+    cat("\n")
+    
+    for (i in 1:length(dfx[[category]])) {
+      
+      if (hasName(dfx, glue("{category} - Title"))) {
+        
+        up_title = dfx[[glue("{category} - Title")]][i]
+        cat(glue("## {up_title}"))
+        cat("\n")
+      }
+      
+      up_author = dfx$Name[i]
+      up_email = dfx$Email[i]
+      update = dfx[[category]][i]
+      
+      if (category == "Photo") {
+      
+        up_photo_file = dfx[[category]][i]
+        up_photo_caption = dfx[["Photo Caption"]][i]
+        
+        cat("\n\n")
+        cat(glue("![](../{up_photo_file})"))
+        cat("\n\n")
+        cat(glue("<i>{up_author} ({up_email})</i>"))
+        cat("\n\n")
+        cat(up_photo_caption)
+        cat("\n\n")
+        cat("******")
+          
+      } else {
+      
+        cat("\n\n")
+        cat(glue("<i>{up_author} ({up_email})</i>"))
+        cat("\n\n")
+        cat(update)
+        cat("\n\n")
+      }
+      
+      if (category == "Publication") {
+        up_link = dfx[["Publication Link"]][i]
+        cat(glue("Publication available at this link: {up_link}"))
+        cat("\n\n")
+      }
+    }
+  }
+}
+```

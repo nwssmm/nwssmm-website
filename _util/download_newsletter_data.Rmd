@@ -1,0 +1,108 @@
+---
+title: "download_newsletter_data.Rmd"
+date: "2025-11-22"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Original Author**: Clara Bird ([birdc\@oregonstate.edu](mailto:birdc@oregonstate.edu){.email}/[clara.birdferrer\@gmail.com](mailto:clara.birdferrer@gmail.com){.email}), GEMM Lab, OSU
+
+**Created**: August 2023
+
+**Updated By**: Natalie Chazal, GEMM Lab, OSU
+
+## Instructions
+
+Run this sheet for each year's newsletter. It will generate a CSV file in the `newsletters/` directory, which can then be used to render a newsletter!
+
+## Download Data
+
+First, load the libraries required to connect directly to Google Drive to get access to the Google Sheet with responses from the form.
+
+```{r}
+library(tidyverse)
+library(googledrive)
+library(googlesheets4)
+library(glue)
+```
+
+Next, authorize access to Google Drive.
+
+```{r}
+options(googledrive_quiet = F)
+options(gargle_oauth_email = "nwssmm.leaders@gmail.com")
+gs4_auth(email = "nwssmm.leaders@gmail.com")
+```
+
+Next, use the link to the Google Sheet generated from responses to the newsletter form.
+
+**Important:** You need to change the permissions on the Google Sheet to "Anyone can edit" to make this step work!
+
+Previous Links:
+
+1.  Fall 2025: <https://docs.google.com/spreadsheets/d/1m_6-OPJE70jZzwW1ReMr9lAMRy36gm3F4zfoJZnP0cc/edit?usp=sharing>
+2.  Sprint 2025: <https://docs.google.com/spreadsheets/d/1R58gek66Wsw5PyJL5zy5izaBlYpuZsFKmLAVXWbN5Cg/edit?usp=sharing>
+3.  Fall 2024: <https://docs.google.com/spreadsheets/d/1itcZ9uN6V9fhXA_Sevz1CZMdyAocNNxjCovOr6spYeA/edit?usp=sharing>
+4.  Sprint 2024: <https://docs.google.com/spreadsheets/d/1tTIP-HUZuOHWXRFThQsO7wvLhqPxi3yR_GH1ae0GjrU/edit?gid=2106727867>
+5.  Fall 2023: <https://docs.google.com/spreadsheets/d/1f5MzH3aKA7qWB1fT-MkwStY2tAHiNCiGWJgMW70f-RQ/edit?usp=sharing>
+
+```{r}
+newsletter <- "spring"
+newsletter_year <- "2025"
+sheet_id <- as_sheets_id("https://docs.google.com/spreadsheets/d/1R58gek66Wsw5PyJL5zy5izaBlYpuZsFKmLAVXWbN5Cg/edit?usp=sharing")
+print(sheet_id)
+```
+
+```{r}
+responses <- read_sheet(sheet_id, col_types = "c", skip = 1)
+```
+
+Next, we save the responses as a CSV file that can be used to render the newsletter. We also download any images that were submitted with the form. The images are saved locally and the responses are updated to reflect these local paths.
+
+**Important:** Choose either `"fall"` or `"spring"` for the `newsletter`.
+
+**Important:** Change the `year` to the year of the newsletter.
+
+```{r}
+output_path <- glue("../newsletters/nwssmm_biannual_newsletter_{newsletter}_{newsletter_year}.csv")
+
+if (hasName(responses, "Photo")) {
+  
+  photo_urls = responses$Photo
+  photo_urls = photo_urls[!is.na(photo_urls)]
+  
+  photo_rel_path = glue("img/nwssmm_biannual_newsletter_{newsletter}_{newsletter_year}")
+  photo_path = glue("../{photo_rel_path}")
+  
+  if (length(photo_urls) > 0) {
+    ifelse(!dir.exists(photo_path), dir.create(photo_path), "Directory Exists")
+  }
+  
+  for (i in 1:nrow(responses)) {
+  
+    photo_url = responses$Photo[i]
+    
+    if (is.na(photo_url)) {
+      next
+    }
+    
+    photo_file_name = drive_get(photo_url)$name
+    drive_download(
+      photo_url,
+      path=glue("{photo_path}/{photo_file_name}"),
+      overwrite=TRUE
+    )
+    
+    responses$Photo[i] = glue("{photo_rel_path}/{photo_file_name}")
+  }
+}
+
+responses |>
+  write_csv(output_path)
+```
+
+```{r}
+
+```

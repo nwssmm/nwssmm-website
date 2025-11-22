@@ -1,0 +1,29 @@
+{
+  "index.qmd": {
+    "index.html": "8f39ec16"
+  },
+  "about.qmd": {
+    "about.html": "45e0cbb6"
+  },
+  "conference.qmd": {
+    "conference.html": "a91c8a3c"
+  },
+  "newsletter.qmd": {
+    "newsletter.html": "04b10057"
+  },
+  "newsletters/nwssmm_biannual_newsletter_fall_2025.qmd": {
+    "nwssmm_biannual_newsletter_fall_2025.html": "6625b306"
+  },
+  "newsletters/nwssmm_biannual_newsletter_fall_2024.qmd": {
+    "nwssmm_biannual_newsletter_fall_2024.html": "6e1dd26e"
+  },
+  "newsletters/nwssmm_biannual_newsletter_spring_2024.qmd": {
+    "nwssmm_biannual_newsletter_spring_2024.html": "a876c15c"
+  },
+  "newsletters/nwssmm_biannual_newsletter_spring_2025.qmd": {
+    "nwssmm_biannual_newsletter_spring_2025.html": "3f59ed0e"
+  },
+  "newsletters/nwssmm_biannual_newsletter_fall_2023.qmd": {
+    "nwssmm_biannual_newsletter_fall_2023.html": "c330d7f9"
+  }
+}

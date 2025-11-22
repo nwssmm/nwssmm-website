@@ -1,0 +1,1 @@
+"0","responses <- read_sheet(sheet_id, col_types = ""c"", skip = 1)"
