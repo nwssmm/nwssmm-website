@@ -30,6 +30,13 @@ library(glue)
 
 Next, authorize access to Google Drive.
 
+If the photo downloading does not work, try running the following instead, which will force both `googledrive` and `googlesheets4` to reauthorize access.
+
+```         
+drive_auth(cache = F)
+gs4_auth(email = "nwssmm.leaders@gmail.com", cache = F)
+```
+
 ```{r}
 options(googledrive_quiet = F)
 options(gargle_oauth_email = "nwssmm.leaders@gmail.com")
@@ -48,6 +55,10 @@ Previous Links:
 4.  Sprint 2024: <https://docs.google.com/spreadsheets/d/1tTIP-HUZuOHWXRFThQsO7wvLhqPxi3yR_GH1ae0GjrU/edit?gid=2106727867>
 5.  Fall 2023: <https://docs.google.com/spreadsheets/d/1f5MzH3aKA7qWB1fT-MkwStY2tAHiNCiGWJgMW70f-RQ/edit?usp=sharing>
 
+**Important:** Choose either `"fall"` or `"spring"` for the `newsletter`.
+
+**Important:** Change the `year` to the year of the newsletter.
+
 ```{r}
 newsletter <- "spring"
 newsletter_year <- "2025"
@@ -60,10 +71,6 @@ responses <- read_sheet(sheet_id, col_types = "c", skip = 1)
 ```
 
 Next, we save the responses as a CSV file that can be used to render the newsletter. We also download any images that were submitted with the form. The images are saved locally and the responses are updated to reflect these local paths.
-
-**Important:** Choose either `"fall"` or `"spring"` for the `newsletter`.
-
-**Important:** Change the `year` to the year of the newsletter.
 
 ```{r}
 output_path <- glue("../newsletters/nwssmm_biannual_newsletter_{newsletter}_{newsletter_year}.csv")
