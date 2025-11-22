@@ -1,7 +1,0 @@
----
-title: "Newsletter"
-listing:
-  contents: newsletters
-  sort: "date desc"
-  fields: [date, title]
----
